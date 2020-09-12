@@ -48,12 +48,11 @@ if (place_meeting(x, y + 1, obj_ground1)) {
 
 //is_facingRight-------------------------------------------------------------//
 if (is_onGround) {
-	facing = key_right_movement - key_left_movement;
-	if (facing > 0) {
+	if (key_right_movement) {
 		image_xscale = 1;
 		is_facingRight = true;
 	}
-	if (facing < 0) {
+	if (key_left_movement) {
 		image_xscale = -1;
 		is_facingRight = false;
 	}
@@ -70,7 +69,6 @@ if (key_right_movement) and (horizontal_speed < horizontal_speed_max){
 
 if (key_left_movement) and (horizontal_speed > -horizontal_speed_max){
 	horizontal_speed -=horizontal_speed_acceleration;
-
 }
 
 if (place_meeting(x + horizontal_speed, y, obj_ground1)) {
@@ -80,14 +78,14 @@ if (place_meeting(x + horizontal_speed, y, obj_ground1)) {
 	horizontal_speed = 0;
 }
 
-x += horizontal_speed;
-
 if (horizontal_speed > 0) {
 	horizontal_speed -= horizontal_speed_deceleration;
 }
 if (horizontal_speed < 0) {
 	horizontal_speed += horizontal_speed_deceleration;
 }
+
+x += horizontal_speed;
 
 //Vertical Movements-------------------------------------------------------------//
 
@@ -100,6 +98,7 @@ if (!is_onGround) {
 
 vertical_speed += gravity_force_var;
 
+//Jump and Doublejump-------------------------------------------------------------//
 if (key_jump) and (number_of_jumps_var > 0) {
 	vertical_speed = -jump_height;
 	gravity_force_var = gravity_force;
@@ -108,6 +107,11 @@ if (key_jump) and (number_of_jumps_var > 0) {
 	}
 }
 
+if (vertical_speed >= fastFall_timing) and (key_down_movement){
+	vertical_speed = -vertical_speed_min;
+}
+
+//Vertical Collision-------------------------------------------------------------//
 if (place_meeting(x, y + vertical_speed, obj_ground1)) {
 	while (!place_meeting(x, y + sign(vertical_speed)*0.1, obj_ground1)) {
 		y += sign(vertical_speed)*0.1;

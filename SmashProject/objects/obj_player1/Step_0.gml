@@ -18,8 +18,8 @@ if (is_gamepadConnected) {
 	key_down_movement = gamepad_axis_value(player_number,gp_axislv) > 0.5;
 	key_up_movement = gamepad_axis_value(player_number,gp_axislv) > 0.5;
 
-	key_jump = gamepad_button_check_pressed(player_number,gp_face4);
-	key_dodge = gamepad_button_check_pressed(player_number,gp_shoulderr);
+	key_jump = gamepad_button_check_pressed(player_number,gp_shoulderr);
+	key_dodge = gamepad_button_check_pressed(player_number,gp_face4);
 } else {
 	key_right_attack = keyboard_check_pressed(vk_right);
 	key_left_attack = keyboard_check_pressed(vk_left);
@@ -100,19 +100,19 @@ if (!is_onGround) {
 
 vertical_speed += gravity_force_var;
 
-if (place_meeting(x, y + vertical_speed, obj_ground1)) {
-	while (!place_meeting(x, y + sign(vertical_speed)*0.1, obj_ground1)) {
-		y += sign(vertical_speed)*0.1;
-	}
-	vertical_speed = 0;
-}
-
 if (key_jump) and (number_of_jumps_var > 0) {
 	vertical_speed = -jump_height;
 	gravity_force_var = gravity_force;
 	if (!is_onGround) {
 		number_of_jumps_var--;
 	}
+}
+
+if (place_meeting(x, y + vertical_speed, obj_ground1)) {
+	while (!place_meeting(x, y + sign(vertical_speed)*0.1, obj_ground1)) {
+		y += sign(vertical_speed)*0.1;
+	}
+	vertical_speed = 0;
 }
 
 if (vertical_speed >= vertical_speed_max) {

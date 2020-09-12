@@ -2,6 +2,7 @@
 
 //Gamepad Variables-------------------------------------------------------------//
 is_gamepadConnected = false;
+player_number = 0;
 
 //Character States-------------------------------------------------------------//
 is_attacking = false;
@@ -12,18 +13,20 @@ is_dodging = false;
 is_invincible = false;
 
 //Movement Variables-------------------------------------------------------------//
+//Jamais de nombre avec plus de 1 chiffre après la virgule
 horizontal_speed = 0;
 horizontal_speed_max = 10;
-horizontal_speed_deceleration = 1; //Jamais de nombre avec plus de 1 chiffre après la virgule
-horizontal_speed_acceleration = 2; //Jamais de nombre avec plus de 1 chiffre après la virgule
+horizontal_speed_deceleration = 0.5;
+horizontal_speed_acceleration = 2; 
 
-gravity_force = 1; //Gravité de base
-gravitiy_acceleration = 0.1;
-vertical_speed = 10;
-jump_height = 20;
+gravity_force = 0;
+gravitiy_acceleration = 0.05;
+vertical_speed = 0;
+vertical_speed_max = 10;
+vertical_speed_min = -20;
+jump_height = 10;
 number_of_jumps = 1;
 
-vertical_speed_var = vertical_speed;
 gravity_force_var = gravity_force;
 number_of_jumps_var = number_of_jumps;
 

@@ -1,5 +1,5 @@
 //Gamepad Connection-------------------------------------------------------------//
-if (gamepad_is_connected(1)) {
+if (gamepad_is_connected(0)) {
 	is_gamepadConnected = true;
 } else {
 	is_gamepadConnected = false;
@@ -7,18 +7,34 @@ if (gamepad_is_connected(1)) {
 
 //Controls-------------------------------------------------------------//
 
-key_right_attack = keyboard_check_pressed(vk_right);
-key_left_attack = keyboard_check_pressed(vk_left);
-key_down_attack = keyboard_check_pressed(vk_down);
-key_up_attack = keyboard_check_pressed(vk_up);
+if (is_gamepadConnected) {
+	key_right_attack = gamepad_axis_value(player_number,gp_axisrh) > 0.5;
+	key_left_attack = gamepad_axis_value(player_number,gp_axisrh) < -0.5;
+	key_down_attack = gamepad_axis_value(player_number,gp_axisrv) > 0.5;
+	key_up_attack = gamepad_axis_value(player_number,gp_axisrv) < -0.5;
 
-key_right_movement = keyboard_check(ord("D"));
-key_left_movement = keyboard_check(ord("A"));
-key_down_movement = keyboard_check(ord("S"));
-key_up_movement = keyboard_check(ord("W"));
+	key_right_movement = gamepad_axis_value(player_number,gp_axislh) > 0.5;
+	key_left_movement = gamepad_axis_value(player_number,gp_axislh) < -0.5;
+	key_down_movement = gamepad_axis_value(player_number,gp_axislv) > 0.5;
+	key_up_movement = gamepad_axis_value(player_number,gp_axislv) > 0.5;
 
-key_jump = keyboard_check_pressed(vk_space);
-key_dodge = keyboard_check_pressed(vk_left);
+	key_jump = gamepad_button_check_pressed(player_number,gp_face4);
+	key_dodge = gamepad_button_check_pressed(player_number,gp_shoulderr);
+} else {
+	key_right_attack = keyboard_check_pressed(vk_right);
+	key_left_attack = keyboard_check_pressed(vk_left);
+	key_down_attack = keyboard_check_pressed(vk_down);
+	key_up_attack = keyboard_check_pressed(vk_up);
+
+	key_right_movement = keyboard_check(ord("D"));
+	key_left_movement = keyboard_check(ord("Q"));
+	key_down_movement = keyboard_check(ord("S"));
+	key_up_movement = keyboard_check(ord("Z"));
+
+	key_jump = keyboard_check_pressed(vk_space);
+	key_dodge = keyboard_check_pressed(vk_left);
+}
+
 
 
 //States-------------------------------------------------------------//
@@ -82,24 +98,32 @@ if (!is_onGround) {
 	number_of_jumps_var = number_of_jumps;
 }
 
-vertical_speed_var += gravity_force_var;
+vertical_speed += gravity_force_var;
 
-if (place_meeting(x, y + vertical_speed_var, obj_ground1)) {
-	while (!place_meeting(x, y + sign(vertical_speed_var)*0.1, obj_ground1)) {
-		y += sign(vertical_speed_var)*0.1;
+if (place_meeting(x, y + vertical_speed, obj_ground1)) {
+	while (!place_meeting(x, y + sign(vertical_speed)*0.1, obj_ground1)) {
+		y += sign(vertical_speed)*0.1;
 	}
-	vertical_speed_var = 0;
+	vertical_speed = 0;
 }
 
 if (key_jump) and (number_of_jumps_var > 0) {
-	vertical_speed_var = -jump_height;
+	vertical_speed = -jump_height;
 	gravity_force_var = gravity_force;
 	if (!is_onGround) {
 		number_of_jumps_var--;
 	}
 }
 
-y += vertical_speed_var;
+if (vertical_speed >= vertical_speed_max) {
+	vertical_speed = vertical_speed_max;
+}
+
+if (vertical_speed <= vertical_speed_min) {
+	vertical_speed = vertical_speed_min;
+}
+
+y += vertical_speed;
 
 //Attacks-------------------------------------------------------------//
 if (!is_attacking) and (!is_stunned) and (!is_dodging) {

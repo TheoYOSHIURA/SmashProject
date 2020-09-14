@@ -31,7 +31,7 @@ if (is_gamepadConnected) {
 	key_down_movement = keyboard_check(ord("S"));
 	key_up_movement = keyboard_check(ord("Z"));
 
-	key_jump = keyboard_check_pressed(vk_space);
+	key_jump = keyboard_check_pressed(vk_space) or key_up_movement;
 	key_dodge = keyboard_check_pressed(vk_left);
 }
 

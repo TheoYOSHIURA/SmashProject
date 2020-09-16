@@ -1,35 +1,42 @@
 //instance_create_layer(x - 16, y, "Instances", obj_sword1);
 
 //Gamepad Variables-------------------------------------------------------------//
-is_gamepadConnected = false;
-player_number = 0;
+is_gamepadConnected = false; //Ne pas toucher
+player_number = 0; //Ne pas toucher
 
 //Character States-------------------------------------------------------------//
-is_attacking = false;
-is_stunned = false;
-is_onGround = true;
-is_facingRight = true;
-is_dodging = false;
-is_invincible = false;
+is_attacking = false; //Ne pas toucher
+is_stunned = false; //Ne pas toucher
+is_onGround = true; //Ne pas toucher
+is_facingRight = true; //Ne pas toucher
+is_dodging = false; //Ne pas toucher
+is_invincible = false; //Ne pas toucher
+is_fastFalling = false; //Ne pas toucher
 
 //Movement Variables-------------------------------------------------------------//
+
 //Jamais de nombre avec plus de 1 chiffre après la virgule
-horizontal_speed = 0;
-horizontal_speed_max = 10;
-horizontal_speed_acceleration = 2;
-horizontal_speed_deceleration= 0.5;
+horizontal_speed_max_ground = 10; //Vitesse maximale au sol (defaut 10)
+horizontal_speed_acceleration_ground = 2; //Acceleration au sol (defaut 2)
+horizontal_speed_deceleration_ground = 0.5; //Deceleration au sol (defaut 0.5)
+horizontal_speed_max_air = 10; //Vitesse maximale en l'air (defaut 10)
+horizontal_speed_acceleration_air = 2; //Acceleration en l'air (defaut 2)
+horizontal_speed_deceleration_air = 0.5; //Deceleration en l'air (defaut 0.5)
 
-gravity_force = 0;
-gravitiy_acceleration = 0.05;
-vertical_speed = 0;
-vertical_speed_max = 20;  //montant
-vertical_speed_min = -20;	//descendant
-jump_height = 10;
-number_of_jumps = 1;
-fastFall_timing = 5;
+gravitiy_acceleration = 0.05; //Incrementation de la gravité (defaut 0.5)
 
-gravity_force_var = gravity_force;
-number_of_jumps_var = number_of_jumps;
+vertical_speed_max = 15; //Vitesse de chute maximale (defaut 15)
+fastFall_speed = 20; //Vitesse de chute (defaut 20)
+jump_speed = 10; //Vitesse initiale de saut (defaut 10)
+number_of_jumps = 1; //Nombre de sauts en l'air (defaut 1)
+
+
+fastFall_timing = 5; //Ne pas toucher
+vertical_speed = 0; //Ne pas toucher
+gravity_force = 0; //Ne pas toucher
+horizontal_speed = 0; //Ne pas toucher
+gravity_force_var = gravity_force; //Ne pas toucher
+number_of_jumps_var = number_of_jumps; //Ne pas toucher
 
 //Attack Variables-------------------------------------------------------------//
-attacktype = "none";
+attacktype = "none"; //Ne pas toucher

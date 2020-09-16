@@ -33,7 +33,7 @@ average_y += (target.y - average_y) / 5;
 i = point_distance(min_x, min_y, max_x, max_y);
 
 //lerp();
-camera_set_view_size(camera, clamp(480*i/100, 480, 10000000000000), clamp(270*i/100, 270, 10000000000000));
+camera_set_view_size(camera, clamp(480*i/100, 480, infinity), clamp(270*i/100, 270, infinity));
 
 view_h_half = camera_get_view_height(camera) / 2;
 view_w_half = camera_get_view_width(camera) / 2;

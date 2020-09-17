@@ -38,5 +38,8 @@ horizontal_speed = 0; //Ne pas toucher
 gravity_force_var = gravity_force; //Ne pas toucher
 number_of_jumps_var = number_of_jumps; //Ne pas toucher
 
+//Passif-------------------------------------------------------------//
+instance_create_layer(x - 30, y, "Instances", obj_sword1);
+
 //Attack Variables-------------------------------------------------------------//
 attacktype = "none"; //Ne pas toucher

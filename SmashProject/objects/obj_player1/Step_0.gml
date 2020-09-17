@@ -19,6 +19,7 @@ if (is_gamepadConnected) {
 
 	key_jump = gamepad_button_check_pressed(player_number,gp_shoulderr);
 	key_dodge = gamepad_button_check_pressed(player_number,gp_face4);
+	key_special = gamepad_button_check_pressed(player_number,gp_shoulderl);
 } else {
 	key_right_attack = keyboard_check_pressed(vk_right);
 	key_left_attack = keyboard_check_pressed(vk_left);
@@ -32,6 +33,7 @@ if (is_gamepadConnected) {
 
 	key_jump = keyboard_check_pressed(vk_space) or key_up_movement;
 	key_dodge = keyboard_check_pressed(vk_left);
+	key_special = keyboard_check_pressed(ord("E"));
 }
 
 
@@ -155,7 +157,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 		
 	//Grounded Moves-------------------------------------------------------------//
 	
-		//F-tilt-------------------------------------------------------------//
+		//FB-tilt-------------------------------------------------------------//
 		if (key_right_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -166,6 +168,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			}
 		}
 		
+		//FB-tilt-------------------------------------------------------------//
 		if (key_left_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -193,7 +196,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 	
 	//Aerial Moves-------------------------------------------------------------//
 		
-		//F-air and B-air-------------------------------------------------------------//
+		//FB-air-------------------------------------------------------------//
 		if (key_right_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -204,6 +207,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			}
 		}
 		
+		//FB-air-------------------------------------------------------------//
 		if (key_left_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -225,7 +229,43 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			is_attacking = true;
 			attacktype = "U-air";
 		}
-	}	
+	}
+	
+	//Special Moves-------------------------------------------------------------//
+	
+		//FB-B-------------------------------------------------------------//
+	if (key_special) and (key_right_movement) {
+		is_attacking = true;
+		if (is_facingRight) {
+			attacktype = "F-B";
+		}
+		else {
+			attacktype = "B-B";
+		}
+	}
+		//FB-B-------------------------------------------------------------//
+	if (key_special) and (key_left_movement) {
+		is_attacking = true;
+		if (is_facingRight) {
+			attacktype = "B-B";
+		}
+		else {
+			attacktype = "F-B";
+		}
+	}
+		
+		
+		//D-B-------------------------------------------------------------//
+	if (key_special) and (key_down_movement) {
+		is_attacking = true;
+		attacktype = "D-B";
+	}
+		
+		//U-B-------------------------------------------------------------//
+	if (key_special) and (key_up_movement) {
+		is_attacking = true;
+		attacktype = "U-B";
+	}
 }
 
 //Attack Execution-------------------------------------------------------------//
@@ -259,7 +299,10 @@ switch (attacktype) {
 		is_attacking = false;
 		break;
 	case "D-air" :
-		//
+		if (!obj_sword1.is_thrown) and (obj_sword1.is_floating) {
+			obj_sword1.is_thrown = true;
+			obj_sword1.is_floating = false;
+		}
 		is_attacking = false;
 		break;
 	case "U-air" :
@@ -267,6 +310,24 @@ switch (attacktype) {
 		is_attacking = false;
 		break;
 	default :
+		is_attacking = false;
+		break;
+		
+	//Special Moves
+	case "F-B" :
+		//
+		is_attacking = false;
+		break;
+	case "B-B" :
+		//
+		is_attacking = false;
+		break;
+	case "D-B" :
+		//
+		is_attacking = false;
+		break;
+	case "U-B" :
+		//
 		is_attacking = false;
 		break;
 }

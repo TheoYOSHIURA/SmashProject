@@ -1,11 +1,15 @@
-//Gamepad Connection-------------------------------------------------------------//
+#region Gamepad Connection
+
 if (gamepad_is_connected(player_number)) {
 	is_gamepadConnected = true;
 } else {
 	is_gamepadConnected = false;
 }
 
-//Controls-------------------------------------------------------------//
+#endregion Gamepad Connection
+
+#region Controls
+
 if (is_gamepadConnected) {
 	key_right_attack = gamepad_axis_value(player_number,gp_axisrh) > 0.5;
 	key_left_attack = gamepad_axis_value(player_number,gp_axisrh) < -0.5;
@@ -36,18 +40,18 @@ if (is_gamepadConnected) {
 	key_special = keyboard_check(vk_control);
 }
 
+#endregion Controls
 
+#region Character States
 
-//States-------------------------------------------------------------//
-
-//is_onGround-------------------------------------------------------------//
+//is_onGround
 if (place_meeting(x, y + 1, obj_ground1)) {
 	is_onGround = true;
 } else {
 	is_onGround = false;
 }
 
-//is_facingRight-------------------------------------------------------------//
+//is_facingRight
 if (is_onGround) {
 	if (key_right_movement) {
 		image_xscale = 1;
@@ -59,10 +63,11 @@ if (is_onGround) {
 	}
 }
 
+#endregion Character States
 	
-//Movements-------------------------------------------------------------//
+#region Character Movements
 
-	//Horizontal Movements-------------------------------------------------------------//
+//Horizontal Movements
 if (is_onGround) {
 	if (key_right_movement) and (horizontal_speed < horizontal_speed_max_ground){
 		horizontal_speed += horizontal_speed_acceleration_ground;
@@ -107,7 +112,7 @@ if (is_onGround) {
 	}
 }
 
-	//Horizontal Collision-------------------------------------------------------------//
+//Horizontal Collision
 if (place_meeting(x + horizontal_speed, y, obj_ground1)) {
 		while (!place_meeting(x + sign(horizontal_speed)*0.1, y, obj_ground1)) {
 			x += sign(horizontal_speed)*0.1;
@@ -117,7 +122,7 @@ if (place_meeting(x + horizontal_speed, y, obj_ground1)) {
 
 x += horizontal_speed;
 
-	//Vertical Movements-------------------------------------------------------------//
+//Vertical Movements
 if (is_onGround) {
 	gravity_force_var = gravity_force;
 	number_of_jumps_var = number_of_jumps;
@@ -128,7 +133,7 @@ if (is_onGround) {
 
 vertical_speed += gravity_force_var;
 
-		//Jump and Doublejump-------------------------------------------------------------//
+//Jump and Doublejump
 if (key_jump) and (number_of_jumps_var > 0) {
 	vertical_speed = -jump_speed;
 	gravity_force_var = gravity_force;
@@ -141,14 +146,14 @@ if (key_jump) and (number_of_jumps_var > 0) {
 if (vertical_speed >= vertical_speed_max) and (!is_fastFalling){
 	vertical_speed = vertical_speed_max;
 }
-		//Fast Fall-------------------------------------------------------------//
+
+//Fast Fall
 if (vertical_speed >= -fastFall_timing) and (key_down_movement){
 	is_fastFalling = true;
 	vertical_speed = fastFall_speed;
 }
 
-
-		//Vertical Collision-------------------------------------------------------------//
+//Vertical Collision
 if (place_meeting(x, y + vertical_speed, obj_ground1)) {
 	while (!place_meeting(x, y + sign(vertical_speed)*0.1, obj_ground1)) {
 		y += sign(vertical_speed)*0.1;
@@ -157,6 +162,8 @@ if (place_meeting(x, y + vertical_speed, obj_ground1)) {
 }
 
 y += vertical_speed;
+
+#endregion Character Movements
 
 //Attacks-------------------------------------------------------------//
 if (!is_attacking) and (!is_stunned) and (!is_dodging) {
@@ -278,7 +285,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 //Attack Execution-------------------------------------------------------------//
 switch (attacktype) {
 	
-	//Grounded Moves
+	//Grounded Moves-------------------------------------------------------------//
 	case "F-tilt" :
 		//
 		is_attacking = false;
@@ -296,7 +303,7 @@ switch (attacktype) {
 		is_attacking = false;
 		break;
 	
-	//Aerial Moves
+	//Aerial Moves-------------------------------------------------------------//
 	case "F-air" :
 		//
 		is_attacking = false;
@@ -317,7 +324,7 @@ switch (attacktype) {
 		is_attacking = false;
 		break;
 		
-	//Special Moves
+	//Special Moves-------------------------------------------------------------//
 	case "F-B" :
 		//
 		is_attacking = false;

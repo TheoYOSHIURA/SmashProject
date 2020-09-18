@@ -33,7 +33,7 @@ if (is_gamepadConnected) {
 
 	key_jump = keyboard_check_pressed(vk_space) or key_up_movement;
 	key_dodge = keyboard_check_pressed(vk_left);
-	key_special = keyboard_check_pressed(ord("E"));
+	key_special = keyboard_check(vk_control);
 }
 
 
@@ -83,19 +83,26 @@ if (is_onGround) {
 
 }
 
-if (horizontal_speed > 0) {
-	if (is_onGround) {
-		horizontal_speed -= horizontal_speed_deceleration_ground;
+if (is_onGround) {
+	if (horizontal_speed > 0) {
+		if (horizontal_speed - horizontal_speed_deceleration_ground < 0) {
+		 horizontal_speed = 0;
+		} else {
+			horizontal_speed -= horizontal_speed_deceleration_ground;
+		}
 	}
-	else {
+	if (horizontal_speed < 0) {
+		if (horizontal_speed + horizontal_speed_deceleration_ground > 0) {
+		 horizontal_speed = 0;
+		} else {
+			horizontal_speed += horizontal_speed_deceleration_ground;
+		}
+	}
+} else {
+	if (horizontal_speed > 0) {
 		horizontal_speed -= horizontal_speed_deceleration_air;
 	}
-}
-if (horizontal_speed < 0) {
-	if (is_onGround) {
-		horizontal_speed += horizontal_speed_deceleration_ground;
-	}
-	else {
+	if (horizontal_speed < 0) {
 		horizontal_speed += horizontal_speed_deceleration_air;
 	}
 }
@@ -116,7 +123,7 @@ if (is_onGround) {
 	number_of_jumps_var = number_of_jumps;
 	is_fastFalling = true;
 } else {
-	gravity_force_var += gravitiy_acceleration;
+	gravity_force_var += gravitiy_acceleration/10;
 }
 
 vertical_speed += gravity_force_var;
@@ -234,7 +241,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 	//Special Moves-------------------------------------------------------------//
 	
 		//FB-B-------------------------------------------------------------//
-	if (key_special) and (key_right_movement) {
+	if (key_special) and (key_right_attack) {
 		is_attacking = true;
 		if (is_facingRight) {
 			attacktype = "F-B";
@@ -244,7 +251,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 		}
 	}
 		//FB-B-------------------------------------------------------------//
-	if (key_special) and (key_left_movement) {
+	if (key_special) and (key_left_attack) {
 		is_attacking = true;
 		if (is_facingRight) {
 			attacktype = "B-B";
@@ -256,13 +263,13 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 		
 		
 		//D-B-------------------------------------------------------------//
-	if (key_special) and (key_down_movement) {
+	if (key_special) and (key_down_attack) {
 		is_attacking = true;
 		attacktype = "D-B";
 	}
 		
 		//U-B-------------------------------------------------------------//
-	if (key_special) and (key_up_movement) {
+	if (key_special) and (key_up_attack) {
 		is_attacking = true;
 		attacktype = "U-B";
 	}
@@ -299,10 +306,7 @@ switch (attacktype) {
 		is_attacking = false;
 		break;
 	case "D-air" :
-		if (!obj_sword1.is_thrown) and (obj_sword1.is_floating) {
-			obj_sword1.is_thrown = true;
-			obj_sword1.is_floating = false;
-		}
+		//
 		is_attacking = false;
 		break;
 	case "U-air" :

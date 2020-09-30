@@ -19,11 +19,11 @@ if (is_gamepadConnected) {
 	key_right_movement = gamepad_axis_value(player_number,gp_axislh) > 0.5;
 	key_left_movement = gamepad_axis_value(player_number,gp_axislh) < -0.5;
 	key_down_movement = gamepad_axis_value(player_number,gp_axislv) > 0.5;
-	key_up_movement = gamepad_axis_value(player_number,gp_axislv) > 0.5;
-
+	key_up_movement = gamepad_axis_value(player_number,gp_axislv) < -0.5;
+	
 	key_jump = gamepad_button_check_pressed(player_number,gp_shoulderr);
 	key_dodge = gamepad_button_check_pressed(player_number,gp_face4);
-	key_special = gamepad_button_check_pressed(player_number,gp_shoulderl);
+	key_special = gamepad_button_check(player_number,gp_shoulderl);
 } else {
 	key_right_attack = keyboard_check_pressed(vk_right);
 	key_left_attack = keyboard_check_pressed(vk_left);
@@ -165,13 +165,14 @@ y += vertical_speed;
 
 #endregion Character Movements
 
-//Attacks-------------------------------------------------------------//
+#region Attacks detection
+
 if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 	if (is_onGround) {
-		
-	//Grounded Moves-------------------------------------------------------------//
-	
-		//FB-tilt-------------------------------------------------------------//
+
+//Aerial Moves-------------------------------------------------------------//
+
+//FB-tilt-------------------------------------------------------------//
 		if (key_right_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -182,7 +183,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			}
 		}
 		
-		//FB-tilt-------------------------------------------------------------//
+//FB-tilt-------------------------------------------------------------//
 		if (key_left_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -194,23 +195,23 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 		}
 		
 		
-		//D-tilt-------------------------------------------------------------//
+//D-tilt-------------------------------------------------------------//
 		if (key_down_attack) {
 			is_attacking = true;
 			attacktype = "D-tilt";
 		}
 		
-		//U-tilt-------------------------------------------------------------//
+//U-tilt-------------------------------------------------------------//
 		if (key_up_attack) {
 			is_attacking = true;
 			attacktype = "U-tilt";
 		}
 		
 	} else {
-	
-	//Aerial Moves-------------------------------------------------------------//
+
+//Aerial Moves-------------------------------------------------------------//
 		
-		//FB-air-------------------------------------------------------------//
+//FB-air-------------------------------------------------------------//
 		if (key_right_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -221,7 +222,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			}
 		}
 		
-		//FB-air-------------------------------------------------------------//
+//FB-air-------------------------------------------------------------//
 		if (key_left_attack) {
 			is_attacking = true;
 			if (is_facingRight) {
@@ -232,22 +233,22 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			}
 		}
 		
-		//D-air-------------------------------------------------------------//
+//D-air-------------------------------------------------------------//
 		if (key_down_attack) {
 			is_attacking = true;
 			attacktype = "D-air";
 		}
 		
-		//U-air-------------------------------------------------------------//
+//U-air-------------------------------------------------------------//
 		if (key_up_attack) {
 			is_attacking = true;
 			attacktype = "U-air";
 		}
 	}
 	
-	//Special Moves-------------------------------------------------------------//
+//Special Moves-------------------------------------------------------------//
 	
-		//FB-B-------------------------------------------------------------//
+//FB-B-------------------------------------------------------------//
 	if (key_special) and (key_right_attack) {
 		is_attacking = true;
 		if (is_facingRight) {
@@ -257,7 +258,7 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 			attacktype = "B-B";
 		}
 	}
-		//FB-B-------------------------------------------------------------//
+//FB-B-------------------------------------------------------------//
 	if (key_special) and (key_left_attack) {
 		is_attacking = true;
 		if (is_facingRight) {
@@ -269,18 +270,22 @@ if (!is_attacking) and (!is_stunned) and (!is_dodging) {
 	}
 		
 		
-		//D-B-------------------------------------------------------------//
+//D-B-------------------------------------------------------------//
 	if (key_special) and (key_down_attack) {
 		is_attacking = true;
 		attacktype = "D-B";
 	}
 		
-		//U-B-------------------------------------------------------------//
+//U-B-------------------------------------------------------------//
 	if (key_special) and (key_up_attack) {
 		is_attacking = true;
 		attacktype = "U-B";
 	}
 }
+
+#endregion Attacks detection
+
+#region Attacks execution
 
 //Attack Execution-------------------------------------------------------------//
 switch (attacktype) {
@@ -345,7 +350,7 @@ switch (attacktype) {
 
 //Passif-------------------------------------------------------------//
 
-
+#endregion Attacks execution
 
 //TEST
 if (keyboard_check_pressed(ord("R"))) {

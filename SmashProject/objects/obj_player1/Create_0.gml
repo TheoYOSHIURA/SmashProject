@@ -24,7 +24,7 @@ horizontal_speed_deceleration_air = 0.2; //Deceleration en l'air (defaut 0.5)
 gravitiy_acceleration = 0.5; //Incrementation de la gravité (toutes les 10 frames)(defaut 0.5)
 
 vertical_speed_max = 15; //Vitesse de chute maximale (defaut 15)
-fastFall_speed = 20; //Vitesse de chute (defaut 20)
+fastFall_speed = 20; //Vitesse de chute rapide(defaut 20)
 jump_speed = 10; //Vitesse initiale de saut (defaut 10)
 number_of_jumps = 1; //Nombre de sauts en l'air (defaut 1)
 
@@ -40,3 +40,6 @@ number_of_jumps_var = number_of_jumps; //Ne pas toucher
 
 //Attack Variables-------------------------------------------------------------//
 attacktype = "none"; //Ne pas toucher
+
+//Stocks-------------------------------------------------------------//
+stocks = 3;

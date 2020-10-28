@@ -42,6 +42,16 @@ if (is_gamepadConnected) {
 
 #endregion Controls
 
+#region Stocks
+
+if (x > camera_get_view_width(0) + 100) or (y > camera_get_view_height(0) + 100) or (x < -100) or (y < -100) {
+	stocks--;
+	x = obj_camera.x;
+	y = obj_camera.y;
+}
+	
+#endregion Stocks
+
 #region Character States
 
 //is_onGround
@@ -352,7 +362,21 @@ switch (attacktype) {
 
 #endregion Attacks execution
 
+#region Tests
 //TEST
 if (keyboard_check_pressed(ord("R"))) {
 	room_restart();
 }
+
+if (keyboard_check_pressed(vk_f2))
+   {
+   if (window_get_fullscreen())
+      {
+      window_set_fullscreen(false);
+      }
+   else
+      {
+      window_set_fullscreen(true);
+      }
+   }
+#endregion Tests

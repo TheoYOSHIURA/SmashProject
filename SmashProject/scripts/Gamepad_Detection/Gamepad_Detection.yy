@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Base",
+    "path": "folders/Scripts/Base.yy",
   },
   "resourceVersion": "1.0",
   "name": "Gamepad_Detection",

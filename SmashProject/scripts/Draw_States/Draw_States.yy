@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Base.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Attacktype_Detection",
+  "name": "Draw_States",
   "tags": [],
   "resourceType": "GMScript",
 }

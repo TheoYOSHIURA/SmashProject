@@ -1,9 +1,9 @@
-function Chiara_Attack_Execution(attacktype){
+function Chiara_Attack_Execution(attacktypeE){
 	
 	if (is_onGround) {
 		
 		//Grounded Moves-------------------------------------------------------------//
-		switch (attacktype) {
+		switch (attacktypeE) {
 		case "F" :
 			//
 			break;
@@ -22,7 +22,7 @@ function Chiara_Attack_Execution(attacktype){
 	else {
 		
 		//Aerial Moves-------------------------------------------------------------//
-		switch (attacktype) {
+		switch (attacktypeE) {
 
 		case "F" :
 			//
@@ -43,7 +43,7 @@ function Chiara_Attack_Execution(attacktype){
 	}
 
 		//Special Moves-------------------------------------------------------------//
-	switch (attacktype) {
+	switch (attacktypeE) {
 		
 	case "FB" :
 		//
@@ -52,7 +52,14 @@ function Chiara_Attack_Execution(attacktype){
 		//
 		break;
 	case "DB" :
-		//
+		if (obj_ChiaraSword.is_thrown) {
+			obj_ChiaraSword.is_thrown = false;
+			x = obj_ChiaraSword.x;
+			y = obj_ChiaraSword.y - 6;
+		}
+		else {
+			obj_ChiaraSword.is_thrown = true;
+		}
 		break;
 	case "UB" :
 		//
@@ -61,5 +68,6 @@ function Chiara_Attack_Execution(attacktype){
 		break;
 			
 	}
+	attacktype = "none";
 
 }

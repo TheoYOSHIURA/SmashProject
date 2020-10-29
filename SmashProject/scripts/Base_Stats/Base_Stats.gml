@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function Base_Stats(){
 
+	#region NoChangesHere
 	//Gamepad Variables-------------------------------------------------------------//
 	is_gamepadConnected = false; //Ne pas toucher
 	player_number = 0; //Ne pas toucher
@@ -15,6 +16,20 @@ function Base_Stats(){
 	is_invincible = false; //Ne pas toucher
 	is_fastFalling = false; //Ne pas toucher
 
+	fastFall_timing = 5; //Ne pas toucher
+	vertical_speed = 0; //Ne pas toucher
+	gravity_force = 0; //Ne pas toucher
+	horizontal_speed = 0; //Ne pas toucher
+	gravity_force_var = gravity_force; //Ne pas toucher
+	number_of_jumps_var = number_of_jumps; //Ne pas toucher
+
+	//Attack Variables-------------------------------------------------------------//
+	attacktype = "none"; //Ne pas toucher
+
+	//Stocks-------------------------------------------------------------//
+	stocks = 3;
+	#endregion NoChangesHere
+	
 	//Movement Variables-------------------------------------------------------------//
 
 	//Jamais de nombre avec plus de 1 chiffre après la virgule
@@ -31,21 +46,5 @@ function Base_Stats(){
 	fastFall_speed = 20; //Vitesse de chute rapide(defaut 20)
 	jump_speed = 10; //Vitesse initiale de saut (defaut 10)
 	number_of_jumps = 1; //Nombre de sauts en l'air (defaut 1)
-
-
-	fastFall_timing = 5; //Ne pas toucher
-	vertical_speed = 0; //Ne pas toucher
-	gravity_force = 0; //Ne pas toucher
-	horizontal_speed = 0; //Ne pas toucher
-	gravity_force_var = gravity_force; //Ne pas toucher
-	number_of_jumps_var = number_of_jumps; //Ne pas toucher
-
-	//Passif-------------------------------------------------------------//
-
-	//Attack Variables-------------------------------------------------------------//
-	attacktype = "none"; //Ne pas toucher
-
-	//Stocks-------------------------------------------------------------//
-	stocks = 3;
 
 }

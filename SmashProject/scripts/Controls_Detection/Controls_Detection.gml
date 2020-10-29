@@ -25,9 +25,9 @@ function Controls_Detection(){
 		key_down_movement = keyboard_check_pressed(ord("S"));
 		key_up_movement = keyboard_check_pressed(ord("W"));
 
-		key_jump = keyboard_check_pressed(vk_space) or key_up_movement;
+		key_jump = keyboard_check_pressed(vk_space);
 		key_dodge = keyboard_check_pressed(vk_left);
-		key_special = keyboard_check_pressed(vk_control);
+		key_special = keyboard_check(vk_shift);
 	}
 
 }

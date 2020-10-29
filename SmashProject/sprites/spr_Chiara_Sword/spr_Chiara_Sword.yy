@@ -26,6 +26,7 @@
   "frames": [
     {"compositeImage":{"FrameId":{"name":"3dc54ba4-8fe0-4c03-9012-c8ffe041e589","path":"sprites/spr_Chiara_Sword/spr_Chiara_Sword.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"3dc54ba4-8fe0-4c03-9012-c8ffe041e589","path":"sprites/spr_Chiara_Sword/spr_Chiara_Sword.yy",},"LayerId":{"name":"7c43525d-6a3b-4074-9a56-7aa29d1c88f0","path":"sprites/spr_Chiara_Sword/spr_Chiara_Sword.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"3dc54ba4-8fe0-4c03-9012-c8ffe041e589","path":"sprites/spr_Chiara_Sword/spr_Chiara_Sword.yy",},"LayerId":{"name":"7c43525d-6a3b-4074-9a56-7aa29d1c88f0","path":"sprites/spr_Chiara_Sword/spr_Chiara_Sword.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_Chiara_Sword","path":"sprites/spr_Chiara_Sword/spr_Chiara_Sword.yy",},"resourceVersion":"1.0","name":"3dc54ba4-8fe0-4c03-9012-c8ffe041e589","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {

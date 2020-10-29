@@ -26,6 +26,8 @@
   "frames": [
     {"compositeImage":{"FrameId":{"name":"b18fc8ff-c184-4520-bfaf-06b61b8e8799","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"b18fc8ff-c184-4520-bfaf-06b61b8e8799","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"LayerId":{"name":"b093f342-36e8-462c-a962-ee7f40cacdbb","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"b18fc8ff-c184-4520-bfaf-06b61b8e8799","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"LayerId":{"name":"b093f342-36e8-462c-a962-ee7f40cacdbb","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"b18fc8ff-c184-4520-bfaf-06b61b8e8799","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"LayerId":{"name":"b093f342-36e8-462c-a962-ee7f40cacdbb","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_Chiara_Idle","path":"sprites/spr_Chiara_Idle/spr_Chiara_Idle.yy",},"resourceVersion":"1.0","name":"b18fc8ff-c184-4520-bfaf-06b61b8e8799","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
